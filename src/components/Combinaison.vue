@@ -3,7 +3,8 @@
     <tile-component
       v-for="(tile, index) in combinaison.tiles"
       :key="index"
-      :tile="tile" />
+      :tile="tile"
+    />
   </div>
 </template>
 

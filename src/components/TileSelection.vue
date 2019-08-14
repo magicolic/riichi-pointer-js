@@ -2,12 +2,14 @@
   <div>
     <div
       v-for="(suit, suitIndex) in tilesGroupedBySuit"
-      :key="suitIndex">
+      :key="suitIndex"
+    >
       <tile-component
         v-for="(tile, tileIndex) in suit.tiles"
         :key="suitIndex + '.' + tileIndex"
         :tile="tile"
-        @click.native="selectTile(tile.suit, tile.value)" />
+        @click.native="selectTile(tile.suit, tile.value)"
+      />
     </div>
   </div>
 </template>

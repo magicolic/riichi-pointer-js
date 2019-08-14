@@ -9,7 +9,8 @@
 
     <div
       v-if="yakuman.total > 0"
-      style="margin-bottom: 1em;">
+      style="margin-bottom: 1em;"
+    >
       <b>Yakuman details</b><br>
       <table>
         <thead>
@@ -21,7 +22,8 @@
         <tbody>
           <tr
             v-for="(detail, index) in yakuman.details"
-            :key="index">
+            :key="index"
+          >
             <td>{{ detail.name }}</td>
             <td>{{ detail.value }}</td>
           </tr>
@@ -40,7 +42,8 @@
       <tbody>
         <tr
           v-for="(detail, index) in yaku.details"
-          :key="index">
+          :key="index"
+        >
           <td>{{ detail.name }}</td>
           <td>{{ detail.value }}</td>
         </tr>
@@ -58,7 +61,8 @@
       <tbody>
         <tr
           v-for="(detail, index) in fu.details"
-          :key="index">
+          :key="index"
+        >
           <td>{{ detail.name }}</td>
           <td>{{ detail.value }}</td>
         </tr>

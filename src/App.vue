@@ -2,24 +2,30 @@
   <div>
     <div
       id="left-menu"
-      :class="{ open: leftMenuIsOpen, close: !leftMenuIsOpen }">
+      :class="{ open: leftMenuIsOpen, close: !leftMenuIsOpen }"
+    >
       <nav>
         <a
           href="#"
-          @click="reset">Reset</a>
+          @click="reset"
+        >Reset</a>
       </nav>
       <a
         id="left-menu-slider"
-        @click="toggleLeftMenu"><span id="left-menu-slider-icon">{{ leftMenuIsOpen ? '&lt;' : '&gt;' }}</span></a>
+        @click="toggleLeftMenu"
+      ><span id="left-menu-slider-icon">{{ leftMenuIsOpen ? '&lt;' : '&gt;' }}</span></a>
     </div>
 
     <div id="layout">
       <div style="width: 100%;">
         <img
           src="img/logo.png"
-          style="height: 40px; display: block; float: left; margin-right: 40px;">
-        <h1 style="font-size: 30px; line-height: 40px;"><span>{{ title }}</span></h1>
-        <div style="clear: both;"/>
+          style="height: 40px; display: block; float: left; margin-right: 40px;"
+        >
+        <h1 style="font-size: 30px; line-height: 40px;">
+          <span>{{ title }}</span>
+        </h1>
+        <div style="clear: both;" />
       </div>
 
       <div v-if="currentView === 'TileSelection'">
@@ -27,12 +33,14 @@
           <input
             type="button"
             value="back to your hand"
-            @click="closeTileSelection">
+            @click="closeTileSelection"
+          >
         </div>
 
         <tile-selection-component
           :tiles="tilesAvailableForSelection"
-          @selectTile="selectTile" />
+          @selectTile="selectTile"
+        />
       </div>
 
       <div v-if="currentView === 'Main'">
@@ -45,9 +53,14 @@
                 <span class="txt1">Winning By<br></span>
                 <select
                   v-model="winningType"
-                  style="width: 100%">
-                  <option value="tsumo">Tsumo</option>
-                  <option value="ron">Ron</option>
+                  style="width: 100%"
+                >
+                  <option value="tsumo">
+                    Tsumo
+                  </option>
+                  <option value="ron">
+                    Ron
+                  </option>
                 </select>
               </div>
             </fieldset>
@@ -60,26 +73,42 @@
               <div style="line-height: 14px; float: left; max-width: 40%; overflow: hidden; margin-right: 5%;">
                 <span class="txt1">Prevalent: <br></span>
                 <select v-model="prevalentWind">
-                  <option value="east">East</option>
-                  <option value="south">South</option>
-                  <option value="west">West</option>
-                  <option value="north">North</option>
+                  <option value="east">
+                    East
+                  </option>
+                  <option value="south">
+                    South
+                  </option>
+                  <option value="west">
+                    West
+                  </option>
+                  <option value="north">
+                    North
+                  </option>
                 </select>
               </div>
 
               <div style="line-height: 14px; float: left; max-width: 40%; overflow: hidden;">
                 <span class="txt1">Seat: <br></span>
                 <select v-model="seatWind">
-                  <option value="east">East</option>
-                  <option value="south">South</option>
-                  <option value="west">West</option>
-                  <option value="north">North</option>
+                  <option value="east">
+                    East
+                  </option>
+                  <option value="south">
+                    South
+                  </option>
+                  <option value="west">
+                    West
+                  </option>
+                  <option value="north">
+                    North
+                  </option>
                 </select>
               </div>
             </fieldset>
           </div>
 
-          <div style="clear: both;"/>
+          <div style="clear: both;" />
         </div>
 
         <div style="margin: 10px 0;">
@@ -90,12 +119,14 @@
                 <input
                   type="button"
                   value="+ Dora"
-                  @click="addDora(false)">
+                  @click="addDora(false)"
+                >
                 <input
                   v-if="selectedDoraTiles.length > 0"
                   type="button"
                   value="- Dora"
-                  @click="removeSelectedDoraTiles(false)">
+                  @click="removeSelectedDoraTiles(false)"
+                >
               </div>
               <div>
                 <tile-component
@@ -103,7 +134,8 @@
                   :key="'dora.' + index"
                   :tile="tile"
                   :selected="selectedDoraTiles.indexOf(tile) > -1"
-                  @click.native="toggleDoraTileSelection(tile, false)" />
+                  @click.native="toggleDoraTileSelection(tile, false)"
+                />
               </div>
             </fieldset>
           </div>
@@ -115,12 +147,14 @@
                 <input
                   type="button"
                   value="+ Ura-Dora"
-                  @click="addDora(true)">
+                  @click="addDora(true)"
+                >
                 <input
                   v-if="selectedUraDoraTiles.length > 0"
                   type="button"
                   value="- Ura-Dora"
-                  @click="removeSelectedDoraTiles(true)">
+                  @click="removeSelectedDoraTiles(true)"
+                >
               </div>
               <div>
                 <tile-component
@@ -128,12 +162,13 @@
                   :key="'uraDora.' + index"
                   :tile="tile"
                   :selected="selectedUraDoraTiles.indexOf(tile) > -1"
-                  @click.native="toggleDoraTileSelection(tile, true)" />
+                  @click.native="toggleDoraTileSelection(tile, true)"
+                />
               </div>
             </fieldset>
           </div>
 
-          <div style="clear: both;"/>
+          <div style="clear: both;" />
         </div>
 
         <div style="margin: 10px 0;">
@@ -144,42 +179,50 @@
                 v-if="!handIsFinish"
                 type="button"
                 value="+ Pair"
-                @click="addCombinaison(true, 'pair')">
+                @click="addCombinaison(true, 'pair')"
+              >
               <input
                 v-if="!handIsFinish"
                 type="button"
                 value="+ Pon"
-                @click="addCombinaison(true, 'pon')">
+                @click="addCombinaison(true, 'pon')"
+              >
               <input
                 v-if="!handIsFinish"
                 type="button"
                 value="+ Kan"
-                @click="addCombinaison(true, 'kan')">
+                @click="addCombinaison(true, 'kan')"
+              >
               <input
                 v-if="!handIsFinish"
                 type="button"
                 value="+ Chii"
-                @click="addCombinaison(true, 'chii')">
+                @click="addCombinaison(true, 'chii')"
+              >
               <input
                 v-if="!handIsFinish"
                 type="button"
                 value="+ Orphan"
-                @click="addCombinaison(true, 'orphan')">
+                @click="addCombinaison(true, 'orphan')"
+              >
               <input
                 v-if="selectedConcealedCombinaisons.length > 0"
                 type="button"
                 value="- Combinaison"
-                @click="removeSelectedCombinaisons(true)">
+                @click="removeSelectedCombinaisons(true)"
+              >
             </div>
             <div
               class="box-combinaison"
-              style="margin-top: 10px;">
+              style="margin-top: 10px;"
+            >
               <combinaison-component
                 v-for="(combinaison, index) in concealedCombinaisons"
                 :key="'concealedCombinaisons.' + index"
                 :combinaison="combinaison"
                 :selected="selectedConcealedCombinaisons.indexOf(combinaison) > -1"
-                @click.native="toggleCombinaisonSelection(combinaison, true)" />
+                @click.native="toggleCombinaisonSelection(combinaison, true)"
+              />
             </div>
           </fieldset>
         </div>
@@ -192,32 +235,38 @@
                 v-if="!handIsFinish"
                 type="button"
                 value="+ Pon"
-                @click="addCombinaison(false, 'pon')">
+                @click="addCombinaison(false, 'pon')"
+              >
               <input
                 v-if="!handIsFinish"
                 type="button"
                 value="+ Kan"
-                @click="addCombinaison(false, 'kan')">
+                @click="addCombinaison(false, 'kan')"
+              >
               <input
                 v-if="!handIsFinish"
                 type="button"
                 value="+ Chii"
-                @click="addCombinaison(false, 'chii')">
+                @click="addCombinaison(false, 'chii')"
+              >
               <input
                 v-if="selectedOpenCombinaisons.length > 0"
                 type="button"
                 value="- Combinaison"
-                @click="removeSelectedCombinaisons(false)">
+                @click="removeSelectedCombinaisons(false)"
+              >
             </div>
             <div
               class="box-combinaison"
-              style="margin-top: 10px;">
+              style="margin-top: 10px;"
+            >
               <combinaison-component
                 v-for="(combinaison, index) in openCombinaisons"
                 :key="'openCombinaisons.' + index"
                 :combinaison="combinaison"
                 :selected="selectedOpenCombinaisons.indexOf(combinaison) > -1"
-                @click.native="toggleCombinaisonSelection(combinaison, false)" />
+                @click.native="toggleCombinaisonSelection(combinaison, false)"
+              />
             </div>
           </fieldset>
         </div>
@@ -232,7 +281,8 @@
                   :key="'waitingTile.' + combinaisonIndex + '.' + tileIndex"
                   :tile="tile"
                   :selected="waitingTile === tile"
-                  @click.native="toggleWaitingTile(tile)" />
+                  @click.native="toggleWaitingTile(tile)"
+                />
               </template>
             </div>
           </fieldset>
@@ -247,15 +297,21 @@
               <div>
                 <select
                   v-model="riichiType"
-                  style="margin-right: 5px;">
-                  <option/>
-                  <option value="normal">Riichi</option>
-                  <option value="double">Double Riichi</option>
+                  style="margin-right: 5px;"
+                >
+                  <option />
+                  <option value="normal">
+                    Riichi
+                  </option>
+                  <option value="double">
+                    Double Riichi
+                  </option>
                 </select>
                 <label class="checkbox">
                   <input
                     v-model="riichiIsIppatsu"
-                    type="checkbox">
+                    type="checkbox"
+                  >
                   Ippatsu
                 </label>
               </div>
@@ -267,7 +323,8 @@
                 <label class="checkbox">
                   <input
                     v-model="wonDuringFirstUninterruptedRound"
-                    type="checkbox">
+                    type="checkbox"
+                  >
                   First round
                 </label>
               </div>
@@ -277,16 +334,25 @@
               <span class="txt1">Special Yaku<br></span>
               <select
                 v-model="winningSecondaryType"
-                style="width: 100%">
-                <option/>
-                <option value="haitei raoyue">Haitei Raoyue</option>
-                <option value="houtei raoyui">Houtei Raoyui</option>
-                <option value="rinshan kaihou">Rinshan Kaihou</option>
-                <option value="chan kan">Chan Kan</option>
+                style="width: 100%"
+              >
+                <option />
+                <option value="haitei raoyue">
+                  Haitei Raoyue
+                </option>
+                <option value="houtei raoyui">
+                  Houtei Raoyui
+                </option>
+                <option value="rinshan kaihou">
+                  Rinshan Kaihou
+                </option>
+                <option value="chan kan">
+                  Chan Kan
+                </option>
               </select>
             </div>
 
-            <div style="clear: both;"/>
+            <div style="clear: both;" />
           </fieldset>
         </div>
 
@@ -295,7 +361,8 @@
             v-if="canCalculatePoint"
             type="button"
             value="Calculate hand points"
-            @click="showPoints">
+            @click="showPoints"
+          >
         </div>
       </div>
 
@@ -304,12 +371,14 @@
           <input
             type="button"
             value="back to your hand"
-            @click="returnToMain">
+            @click="returnToMain"
+          >
         </div>
         <div style="margin: 20px 0;">
           <score-component
             :hand="hand"
-            :ruleset="ruleset" />
+            :ruleset="ruleset"
+          />
         </div>
       </div>
     </div>
